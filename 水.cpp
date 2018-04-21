@@ -1,24 +1,27 @@
 #include<stdio.h>
 #include<string.h>
 #include<math.h>
-#define PI 3.1415926
+#include<stdlib.h>
+
 int main() {
-	long i,j,n;
-	while(scanf("%ld",&n)!=EOF) {
-		int num[10005]={0};
-		if(n==0){
-			printf("%d\n",0);
-			continue;
+	long long  i,n,num[100]={0};
+	double judge;
+	int j=0;
+    num[0]=471;
+	for(i=104487111;i<0x777777777777;i+=100){
+		judge=pow(i,1/3);
+		if(judge==(int)judge){
+			num[j++]=judge;
+		}if(j==100){
+		break;
 		}
-		i=0;
-		while(n){
-			num[i++]=n%2;
-			n/=2;
-		}
-		for(i=i-1;i>=0;i--){
-			printf("%d",num[i]);
-		}
-		printf("\n");
 	}
+	int nn,shu;
+	scanf("%d",&nn);
+	while(nn--){
+            scanf("%d",&shu);
+        printf("%d\n",num[shu-1]);
+	}
+
 	return 0;
 }

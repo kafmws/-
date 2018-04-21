@@ -2,13 +2,31 @@
 #include<string.h>
 #include<stdlib.h>
 
+long double atolf(char num[]){
+	int x=strlen(num),i,k,book;
+	long double sum=0,shu;
+	for(i=0;i<x&&num[i]!='.';i++){
+		sum*=10,sum+=num[i]-'0';
+	}
+	if(num[i]=='.'){
+		book=i;
+		for(i=i+1;i<x;i++){
+			shu=num[i]-'0';
+			for(k=0;k<=book-i;k++){
+				shu/=10;
+			}
+			sum+=shu; 
+		}
+	}
+	return sum;
+} 
 int main() {
 	int i,j,cnt0,book,sign,x,k,asdf;//asdf
-	double obj,flag;
-	char num[105];
+	long double obj,flag;
+	char num[110];
 	while(scanf("%[^\n]%*c",num)!=EOF) {
 		char re[400]= {0};
-		if((num[0]=='0'&&num[1]=='\0')||(num[0]=='0'&&num[1]=='.'&&num[2]=='0')||num[0]=='0'&&num[1]=='.'&&num[2]=='0'&&num[3]=='0') {
+		if((num[0]=='0'&&num[1]=='\0')||num[0]=='0'&&num[1]=='.'&&num[2]=='0'&&num[3]=='0'&&(num[4]<'5'&&num[4]>='0')) {
 			printf("%.2f\n",0.00);
 		} else {
 			sign=1;
@@ -33,11 +51,12 @@ int main() {
 //		for(i=0;i<strlen(num);i++){
 //			printf("%c",num[i]);
 //		}printf("测试\n");
-			obj=atof(num);
-//四舍五入
-			if(obj*100-(int)(obj*100)>=0.5) {
-				obj+=0.01;
-			}
+			obj=atolf(num);//atof位数不够 
+////四舍五入
+//			if(obj*100-(int)(obj*100)>=0.5) {
+//				obj+=0.01;
+//			}
+//			obj=((int)(obj*100))*1.0/100;
 			sprintf(num,"%lf",obj);
 			for(i=0; i<strlen(num); i++) {
 				if(num[i]=='.') {//book .
@@ -45,6 +64,10 @@ int main() {
 					break;
 				}
 			}
+//			for(i=0; i<strlen(num); i++) {
+//				printf("%c",num[i]);
+//			}
+//			printf("  num测试\n");
 			if(book==-1) {
 				book=strlen(num);
 				num[strlen(num)+1]='\0';
@@ -86,29 +109,29 @@ int main() {
 	}
 	return 0;
 }
-package 南阳;
-
-import java.io.BufferedInputStream;
-import java.text.DecimalFormat;
-import java.util.Scanner;
-
-///**
-//* DecimalFormat类的使用
-//*/
-//public class _1092 {
-//public static void main(String[] args) {
-//Scanner in = new Scanner(new BufferedInputStream(System.in));
-///**
-//* #:代表数字，若没有时，不显示
-//* 0:代表数字，若没有时，显示为0
-//* ;:正负数的模式
-//* .:小数点
-//*/
-//DecimalFormat format = new DecimalFormat("#,##0.00;(#,##0.00)");
-//while (in.hasNextDouble()) {
-//System.out.println(format.format(in.nextBigDecimal()));
-//}
-//System.out.close();
-//in.close();
-//}
-//}
+//package 南阳;
+//
+//import java.io.BufferedInputStream;
+//import java.text.DecimalFormat;
+//import java.util.Scanner;
+//
+/////**
+////* DecimalFormat类的使用
+////*/
+////public class _1092 {
+////public static void main(String[] args) {
+////Scanner in = new Scanner(new BufferedInputStream(System.in));
+/////**
+////* #:代表数字，若没有时，不显示
+////* 0:代表数字，若没有时，显示为0
+////* ;:正负数的模式
+////* .:小数点
+////*/
+////DecimalFormat format = new DecimalFormat("#,##0.00;(#,##0.00)");
+////while (in.hasNextDouble()) {
+////System.out.println(format.format(in.nextBigDecimal()));
+////}
+////System.out.close();
+////in.close();
+////}
+////}

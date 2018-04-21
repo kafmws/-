@@ -1,5 +1,14 @@
 #include<stdio.h>
-#include<string.h>
 main() {
-	printf("%ld",0b111011100110101111000100010000);
+	int n,i,t;
+	scanf("%d",&t);
+	while(t--) {
+		int s=0;
+		scanf("%d",&n);
+		for(i=1; (i+1)*(i+1)<=n+1; i++) {
+			if((n+1)%(i+1)==0)
+				s++;
+		}
+		printf("%d\n",s);
+	}
 }
