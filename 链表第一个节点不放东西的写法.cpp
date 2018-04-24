@@ -45,7 +45,7 @@ void add(List *list,int num){
 int main(){
 	List list;
 	int num;
-	node *p=(node *)malloc(sizeof(node));//空的头结点
+	node *p=(node *)malloc(sizeof(node));//空的头结点,p所指的内存为头节点，p为头指针 
 	p->next=NULL;
 	list.head=list.tail=p;
 	while(scanf("%d",&num)&&num!=-1){

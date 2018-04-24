@@ -3,12 +3,6 @@
 #include<string.h>
 #include<math.h>//开方运算慢于乘 
 
-//for(i=1; i<=(int)sqrt(n+1)-1;i++) {
-//			if((n-1)%i==0) {
-//				cnt++;
-//			}
-//		}
-
 int main() {
 	long long  T,i,j,n,cnt;
 	scanf("%lld",&T);
@@ -24,4 +18,8 @@ int main() {
 		printf("%lld\n",cnt);
 	}
 	return 0;
-}
+}//for(i=1; i<=(int)sqrt(n+1)-1;i++) {
+//			if((n-1)%i==0) {
+//				cnt++;
+//			}
+//		}

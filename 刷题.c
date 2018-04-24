@@ -2,19 +2,27 @@
 #include<stdlib.h>
 #include<string.h>
 #include<math.h>
-
+#include<conio.h>
 int main() {
-	long long  T,i,j,n,cnt;
-	scanf("%lld",&T);
-	while(T--) {
-		cnt=0;
-		scanf("%lld",&n);
-		for(i=1; i<=(int)sqrt(n+1)-1;i++) {
-			if((n-1)%i==0) {
-				cnt++;
-			}
+	int i;
+	char str[25],c;
+	for(i=0;i<25;i++){
+		c=getch();
+		if(c!='\r'&&c!=8){
+			str[i]=c;
 		}
-		printf("%lld\n",cnt);
+		else if(c==8){
+			printf("\b \b");
+			continue;
+		}else{
+			break;
+		}
+		printf("*");
+	}
+	printf("\n");
+	str[i]='\0';
+	for(i=0;i<strlen(str);i++){
+		printf("%c",str[i]);
 	}
 	return 0;
 }

@@ -1,42 +1,63 @@
-#include<stdio.h>
-#include<string.h>
+#include <stdio.h>
+#include <string.h>
+#define maxn 110
+char buf[maxn];
 int main() {
-	char time,len,str[100],min=1,i,j,flag;
-	scanf("%d",&time);
-	while(time--) {
-		scanf("%s",str);
-		min=strlen(str);//判断是否为回文  //min-1 当前最后一个字符的下标
-		while(min) {//
-			flag=1;
-			if(min<2) {
-				min=1;
-				break;
-			}
-			if(min%2==0) { //为偶数
-				for(i=0,j=min-1; i<=min/2&&j>=min/2; i++,j--) {
-					if(str[i]!=str[j]) {
-						flag=0;
-						break;
-					}
-				}
-				if(flag==0) {
-					break;
-				}
-				min/=2;
-			} else { //为奇数
-				for(i=0,j=min-1; i<(min-1)/2&&j>(min-1)/2; i++,j--) {
-					if(str[i]!=str[j]) {
-						flag=0;
-						break;
-					}
-				}
-				if(flag==0) {
-					break;
-				}
-				min/=2;
-			}
+	int sign,left,dot,i,len;
+	char *ch;
+	while(scanf("%s", buf + 1) != EOF) {
+		sign = 0;
+		buf[0] = '0';
+		if(buf[1] == '-') {
+			sign = 1;
+			buf[1] = '0';
 		}
-		printf("%d\n",min);
+		len = strlen(buf);
+// printf("%d\n",len);
+		if(ch = strchr(buf, '.')) {
+			dot = ch - buf;
+		} else dot = len;
+//	printf("%d\n",dot);
+		if(len - dot > 3) {
+			if(buf[dot+3] > '4') {
+				if(++buf[dot+2] > '9') {
+					buf[dot+2] = '0';
+					if(++buf[dot+1] > '9') {
+						buf[dot+1] = '0';
+						++buf[dot-1];
+					}
+				}
+				i = dot - 1;
+				while(buf[i] > '9') {
+					buf[i--] = '0';
+					++buf[i];
+				}
+			}
+			buf[dot+3] = '\0';
+		} else if(len - dot == 2) {
+			buf[len++] = '0';
+			buf[len] = '\0';
+		} else if(len - dot == 1) {
+			buf[len++] = '0';
+			buf[len++] = '0';
+			buf[len] = '\0';
+		} else if(len - dot == 0) {
+			buf[len++] = '.';
+			buf[len++] = '0';
+			buf[len++] = '0';
+			buf[len] = '\0';
+		}
+		for(left = 0; buf[left] == '0'; ++left);
+		if(buf[left] == '.') --left;
+		if(sign) putchar('(');
+		while(left < dot) {
+			putchar(buf[left++]);
+			if(left != dot && (dot - left) % 3 == 0)
+				putchar(',');
+		}
+		printf("%s", buf + dot);
+		if(sign) putchar(')');
+		putchar('\n');
 	}
 	return 0;
 }
